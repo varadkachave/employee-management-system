@@ -2,10 +2,9 @@ package com.example.Employee_management_system.controller;
 
 import com.example.Employee_management_system.entity.Employee;
 import com.example.Employee_management_system.service.EmployeeService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/employees")
@@ -20,4 +19,16 @@ public class EmployeeController {
     {
         return employeeService.createEmpolyee(employee);
     }
+    @GetMapping
+    public List<Employee> getAllEmployees()
+    {
+        return employeeService.getAllEmployess();
+    }
+    @GetMapping("/{id}")
+        public Employee getEmployeeById(@PathVariable Long id)
+        {
+            return employeeService.getEmployeeById(id)
+            .orElseThrow(() -> new RuntimeException("employee not found"));
+        }
+
 }
