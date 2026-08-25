@@ -31,4 +31,11 @@ public class EmployeeController {
             .orElseThrow(() -> new RuntimeException("employee not found"));
         }
 
+    @PutMapping("/{id}")
+    public Employee updateEmployee(
+            @PathVariable Long id,
+            @RequestBody Employee employeeDetails) {
+
+        return employeeService.updateEmployee(id, employeeDetails);
+    }
 }
